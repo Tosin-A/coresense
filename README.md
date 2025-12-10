@@ -2,6 +2,29 @@
 
 A modern, professional landing page for CoreSense - an AI-powered personal health and productivity companion.
 
+## 🚀 Quick Deploy
+
+### Option 1: Automated Setup Script
+```bash
+./setup-and-deploy.sh
+```
+
+### Option 2: Manual GitHub Setup
+1. Create a new repository on GitHub named `coresense-landing`
+2. Run:
+```bash
+git remote add origin https://github.com/YOUR_USERNAME/coresense-landing.git
+git push -u origin main
+```
+3. Enable GitHub Pages in repository settings → Pages → Source: GitHub Actions
+
+### Option 3: Deploy to Vercel (Recommended - Fastest)
+1. Go to [vercel.com](https://vercel.com)
+2. Import your GitHub repository
+3. Deploy automatically!
+
+See [DEPLOY.md](./DEPLOY.md) for detailed deployment instructions.
+
 ## Features
 
 - **Modern UI Design**: Beautiful, responsive design with gradient accents and smooth animations
