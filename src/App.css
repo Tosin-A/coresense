@@ -938,5 +938,26 @@
 
   .feature-box {
     padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Ensure no transform on very small screens */
+  .features-grid .feature-box:nth-child(7),
+  .features-grid .feature-box:nth-child(8) {
+    transform: none !important;
+    grid-column: 1 / -1;
+  }
+
+  .feature-box h3 {
+    font-size: 18px;
+    word-break: break-word;
+  }
+
+  .feature-box p {
+    font-size: 14px;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 }
