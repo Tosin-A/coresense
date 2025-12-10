@@ -453,10 +453,6 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  max-width: 100%;
-  box-sizing: border-box;
 }
 
 .feature-box:hover {
@@ -486,9 +482,6 @@
   font-size: 16px;
   line-height: 1.6;
   color: #b0b0b0;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
 }
 
 /* Survey Modal */
@@ -638,44 +631,6 @@
   font-size: 14px;
   color: #b0b0b0;
   line-height: 1.5;
-}
-
-.survey-feedback {
-  margin-bottom: 24px;
-}
-
-.feedback-label {
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
-  color: #b0b0b0;
-  margin-bottom: 8px;
-}
-
-.feedback-textarea {
-  width: 100%;
-  padding: 16px;
-  border-radius: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  background: #2a2a2a;
-  color: #ffffff;
-  font-size: 14px;
-  font-family: inherit;
-  line-height: 1.5;
-  resize: vertical;
-  transition: all 0.3s ease;
-  outline: none;
-  box-sizing: border-box;
-}
-
-.feedback-textarea::placeholder {
-  color: #707070;
-}
-
-.feedback-textarea:focus {
-  border-color: #667eea;
-  background: #333333;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
 }
 
 /* Success Page */
@@ -870,10 +825,10 @@
     gap: 20px;
   }
 
-  /* Remove transform on mobile for centered items */
+  /* Remove transform on mobile for centered items - they cause overflow */
   .features-grid .feature-box:nth-child(7),
   .features-grid .feature-box:nth-child(8) {
-    transform: none;
+    transform: none !important;
     grid-column: 1 / -1;
   }
 
@@ -882,16 +837,17 @@
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
   }
 
   .feature-box h3 {
     font-size: 20px;
-    word-wrap: break-word;
+    word-break: break-word;
   }
 
   .feature-box p {
     font-size: 15px;
-    word-wrap: break-word;
+    word-break: break-word;
     overflow-wrap: break-word;
   }
 
@@ -982,26 +938,5 @@
 
   .feature-box {
     padding: 20px;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  .feature-box h3 {
-    font-size: 18px;
-    word-wrap: break-word;
-  }
-
-  .feature-box p {
-    font-size: 14px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-
-  /* Ensure no transform on very small screens */
-  .features-grid .feature-box:nth-child(7),
-  .features-grid .feature-box:nth-child(8) {
-    transform: none;
-    grid-column: 1 / -1;
   }
 }
