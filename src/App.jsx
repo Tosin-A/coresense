@@ -198,7 +198,7 @@ export default function App() {
           <div className="container">
             <div className="hero-content">
               <div className="trust-badge fade-in" id="trust-badge">
-                <span className="badge-text">Join 500+ early adopters</span>
+                <span className="badge-text">Join 50+ early adopters</span>
               </div>
               <h1 className="hero-title fade-in" id="hero-title">
                 Get Personalized Health Insights
