@@ -7,6 +7,7 @@ export default function App() {
   const [selectedFeature, setSelectedFeature] = useState("");
   const [usageLikelihood, setUsageLikelihood] = useState("");
   const [usageFrequency, setUsageFrequency] = useState("");
+  const [age, setAge] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [visibleElements, setVisibleElements] = useState(new Set());
   
@@ -102,6 +103,12 @@ export default function App() {
       return;
     }
     
+    const ageNum = parseInt(age, 10);
+    if (!age || isNaN(ageNum) || ageNum < 13 || ageNum > 100) {
+      alert("Please enter your age (must be between 13 and 100).");
+      return;
+    }
+    
     if (!usageLikelihood || usageLikelihood < 1 || usageLikelihood > 10) {
       alert("Please rate how likely you are to use this app (1-10).");
       return;
@@ -142,6 +149,11 @@ export default function App() {
     usageFrequencyInput.name = "usage_frequency";
     usageFrequencyInput.value = usageFrequency;
     
+    const ageInput = document.createElement("input");
+    ageInput.type = "hidden";
+    ageInput.name = "age";
+    ageInput.value = age;
+    
     const sourceInput = document.createElement("input");
     sourceInput.type = "hidden";
     sourceInput.name = "source";
@@ -152,6 +164,7 @@ export default function App() {
     form.appendChild(featureInput);
     form.appendChild(usageLikelihoodInput);
     form.appendChild(usageFrequencyInput);
+    form.appendChild(ageInput);
     form.appendChild(sourceInput);
     document.body.appendChild(form);
     form.submit();
@@ -204,6 +217,30 @@ export default function App() {
               </div>
               
               <div className="survey-questions">
+                <div className="survey-question">
+                  <label htmlFor="age" className="survey-question-label">
+                    What is your age? <span className="required">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    min="13"
+                    max="100"
+                    value={age}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      // Only allow non-negative numbers
+                      if (value === "" || (!isNaN(value) && parseFloat(value) >= 0)) {
+                        setAge(value);
+                      }
+                    }}
+                    className="usage-frequency-select"
+                    required
+                    placeholder="Enter your age"
+                  />
+                </div>
+                
                 <div className="survey-question">
                   <label htmlFor="usage-likelihood" className="survey-question-label">
                     On a scale of 1–10, how likely are you to use this app? (Be honest) <span className="required">*</span>
