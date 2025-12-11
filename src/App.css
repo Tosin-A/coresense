@@ -591,6 +591,142 @@
   margin-bottom: 32px;
 }
 
+.survey-questions {
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.survey-question {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.survey-question-label {
+  color: #e5e5e5;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.survey-question-label .required {
+  color: #ff6b6b;
+  margin-left: 2px;
+}
+
+.likelihood-input-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.likelihood-slider {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.likelihood-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
+  transition: all 0.2s ease;
+}
+
+.likelihood-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(102, 126, 234, 0.6);
+}
+
+.likelihood-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
+  transition: all 0.2s ease;
+}
+
+.likelihood-slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(102, 126, 234, 0.6);
+}
+
+.likelihood-value-display {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  min-width: 60px;
+  justify-content: center;
+}
+
+.likelihood-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #667eea;
+  line-height: 1;
+}
+
+.likelihood-scale {
+  font-size: 14px;
+  color: #a0a0a0;
+}
+
+.likelihood-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #a0a0a0;
+  margin-top: -4px;
+}
+
+.usage-frequency-select {
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e5e5e5;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a0a0a0' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 45px;
+}
+
+.usage-frequency-select:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.usage-frequency-select:focus {
+  border-color: #667eea;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.usage-frequency-select option {
+  background: #1a1a1a;
+  color: #e5e5e5;
+}
+
 .feature-card {
   position: relative;
   padding: 20px;
@@ -825,30 +961,16 @@
     gap: 20px;
   }
 
-  /* Remove transform on mobile for centered items - they cause overflow */
-  .features-grid .feature-box:nth-child(7),
-  .features-grid .feature-box:nth-child(8) {
-    transform: none !important;
-    grid-column: 1 / -1;
-  }
-
   .feature-box {
     padding: 24px;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
   }
 
   .feature-box h3 {
     font-size: 20px;
-    word-break: break-word;
   }
 
   .feature-box p {
     font-size: 15px;
-    word-break: break-word;
-    overflow-wrap: break-word;
   }
 
   .waitlist {
@@ -884,6 +1006,34 @@
   .feature-grid {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+  
+  .survey-questions {
+    margin-bottom: 24px;
+    gap: 20px;
+  }
+  
+  .survey-question-label {
+    font-size: 15px;
+  }
+  
+  .likelihood-input-container {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .likelihood-value-display {
+    justify-content: center;
+  }
+  
+  .likelihood-labels {
+    font-size: 11px;
+  }
+  
+  .usage-frequency-select {
+    padding: 12px 16px;
+    font-size: 15px;
   }
 
   .feature-card {
@@ -935,29 +1085,26 @@
   .survey-modal {
     padding: 20px;
   }
+  
+  .survey-questions {
+    margin-bottom: 20px;
+    gap: 18px;
+  }
+  
+  .survey-question-label {
+    font-size: 14px;
+  }
+  
+  .likelihood-value {
+    font-size: 20px;
+  }
+  
+  .usage-frequency-select {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
 
   .feature-box {
     padding: 20px;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Ensure no transform on very small screens */
-  .features-grid .feature-box:nth-child(7),
-  .features-grid .feature-box:nth-child(8) {
-    transform: none !important;
-    grid-column: 1 / -1;
-  }
-
-  .feature-box h3 {
-    font-size: 18px;
-    word-break: break-word;
-  }
-
-  .feature-box p {
-    font-size: 14px;
-    word-break: break-word;
-    overflow-wrap: break-word;
   }
 }

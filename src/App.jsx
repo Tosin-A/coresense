@@ -5,6 +5,8 @@ export default function App() {
   const [showSurvey, setShowSurvey] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "" });
   const [selectedFeature, setSelectedFeature] = useState("");
+  const [usageLikelihood, setUsageLikelihood] = useState("");
+  const [usageFrequency, setUsageFrequency] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [visibleElements, setVisibleElements] = useState(new Set());
   
@@ -99,6 +101,16 @@ export default function App() {
       alert("Please select a feature you're most interested in.");
       return;
     }
+    
+    if (!usageLikelihood || usageLikelihood < 1 || usageLikelihood > 10) {
+      alert("Please rate how likely you are to use this app (1-10).");
+      return;
+    }
+    
+    if (!usageFrequency) {
+      alert("Please select how often you would use CoreSense.");
+      return;
+    }
 
     // Submit to Formspree with all data
     const form = document.createElement("form");
@@ -120,6 +132,16 @@ export default function App() {
     featureInput.name = "selected_feature";
     featureInput.value = selectedFeature;
     
+    const usageLikelihoodInput = document.createElement("input");
+    usageLikelihoodInput.type = "hidden";
+    usageLikelihoodInput.name = "usage_likelihood";
+    usageLikelihoodInput.value = usageLikelihood;
+    
+    const usageFrequencyInput = document.createElement("input");
+    usageFrequencyInput.type = "hidden";
+    usageFrequencyInput.name = "usage_frequency";
+    usageFrequencyInput.value = usageFrequency;
+    
     const sourceInput = document.createElement("input");
     sourceInput.type = "hidden";
     sourceInput.name = "source";
@@ -128,6 +150,8 @@ export default function App() {
     form.appendChild(nameInput);
     form.appendChild(emailInput);
     form.appendChild(featureInput);
+    form.appendChild(usageLikelihoodInput);
+    form.appendChild(usageFrequencyInput);
     form.appendChild(sourceInput);
     document.body.appendChild(form);
     form.submit();
@@ -178,6 +202,57 @@ export default function App() {
                   </label>
                 ))}
               </div>
+              
+              <div className="survey-questions">
+                <div className="survey-question">
+                  <label htmlFor="usage-likelihood" className="survey-question-label">
+                    On a scale of 1–10, how likely are you to use this app? (Be honest) <span className="required">*</span>
+                  </label>
+                  <div className="likelihood-input-container">
+                    <input
+                      type="range"
+                      id="usage-likelihood"
+                      name="usage-likelihood"
+                      min="1"
+                      max="10"
+                      value={usageLikelihood}
+                      onChange={(e) => setUsageLikelihood(e.target.value)}
+                      className="likelihood-slider"
+                      required
+                    />
+                    <div className="likelihood-value-display">
+                      <span className="likelihood-value">{usageLikelihood || "?"}</span>
+                      <span className="likelihood-scale">/ 10</span>
+                    </div>
+                  </div>
+                  <div className="likelihood-labels">
+                    <span>1 - Unlikely</span>
+                    <span>10 - Very Likely</span>
+                  </div>
+                </div>
+                
+                <div className="survey-question">
+                  <label htmlFor="usage-frequency" className="survey-question-label">
+                    How often do you think you would use CoreSense? <span className="required">*</span>
+                  </label>
+                  <select
+                    id="usage-frequency"
+                    name="usage-frequency"
+                    value={usageFrequency}
+                    onChange={(e) => setUsageFrequency(e.target.value)}
+                    className="usage-frequency-select"
+                    required
+                  >
+                    <option value="">Select an option...</option>
+                    <option value="Daily">Daily</option>
+                    <option value="A few times a week">A few times a week</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Rarely">Rarely</option>
+                    <option value="Not sure yet">Not sure yet</option>
+                  </select>
+                </div>
+              </div>
+              
               <button type="submit" className="submit-survey-button">
                 Reserve My Spot
               </button>
