@@ -363,7 +363,7 @@ export default function App() {
                       className="form-input-inline"
                     />
                     <button type="submit" className="cta-primary-inline">
-                      Get Early Access
+                      Register Your Interest
                     </button>
                   </div>
                   <p className="form-note-inline">
