@@ -51,13 +51,6 @@ npm run build
 
 The built files will be in the `dist` directory.
 
-## Form Configuration
-
-The landing page uses Formspree for form submissions. To configure:
-
-1. Sign up at [Formspree](https://formspree.io)
-2. Create a new form and get your form ID
-3. Update the form action URL in `src/App.jsx` (line with `formspree.io/f/manrpqwb`)
 
 ## User Flow
 
