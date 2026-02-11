@@ -1,7 +1,42 @@
 import React, { useState, useEffect, useRef } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import "./App.css";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 
-export default function App() {
+function Navbar() {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
+  return (
+    <header className="header">
+      <div className="container header-container">
+        <Link to="/" className="logo">
+          CoreSense
+        </Link>
+        <nav className="nav-links">
+          <Link to="/" className={isHome ? "nav-link active" : "nav-link"}>
+            Home
+          </Link>
+          <Link to="/privacy" className="nav-link">
+            Privacy Policy
+          </Link>
+          <Link to="/terms" className="nav-link">
+            Terms of Service
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+function HomePage() {
   const [showSurvey, setShowSurvey] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "" });
   const [selectedFeature, setSelectedFeature] = useState("");
@@ -9,12 +44,10 @@ export default function App() {
   const [usageFrequency, setUsageFrequency] = useState("");
   const [age, setAge] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [visibleElements, setVisibleElements] = useState(new Set());
-  
+
   const observerRef = useRef(null);
 
   useEffect(() => {
-    // Intersection Observer for scroll animations
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -26,10 +59,9 @@ export default function App() {
       {
         threshold: 0.1,
         rootMargin: "0px 0px -50px 0px",
-      }
+      },
     );
 
-    // Observe all elements with fade-in class after a short delay to ensure DOM is ready
     setTimeout(() => {
       const elements = document.querySelectorAll(".fade-in-up, .fade-in");
       elements.forEach((el) => {
@@ -50,43 +82,51 @@ export default function App() {
     {
       id: "real-data",
       title: "Insights Based on Your Real Data",
-      description: "Stop guessing. See honest trends from your actual activity. Connect Apple Health, Android Health, and (optional) wearables to get personalised recommendations that work for you."
+      description:
+        "Stop guessing. See honest trends from your actual activity. Connect Apple Health, Android Health, and (optional) wearables to get personalised recommendations that work for you.",
     },
     {
       id: "ai-coach",
       title: "Your Personal Accountability Partner",
-      description: "Chat with your AI coach like its your bro. Get reminders, check-ins, and personalised coaching that helps you stick to your goals and build better habits."
+      description:
+        "Chat with your AI coach like its your bro. Get reminders, check-ins, and personalised coaching that helps you stick to your goals and build better habits.",
     },
     {
       id: "journalling",
       title: "AI That Understands You Better",
-      description: "Journal your thoughts and goals. The more you share, the more personalized your insights become — helping you make real progress on what matters to you."
+      description:
+        "Journal your thoughts and goals. The more you share, the more personalized your insights become — helping you make real progress on what matters to you.",
     },
     {
       id: "weekly-summaries",
       title: "Weekly Insights That Matter",
-      description: "Get clear, actionable summaries of your week — not overwhelming data dumps. See what's working and what needs attention."
+      description:
+        "Get clear, actionable summaries of your week — not overwhelming data dumps. See what's working and what needs attention.",
     },
     {
       id: "trend-analysis",
       title: "Spot Patterns Before They Become Problems",
-      description: "See how your sleep, activity, and habits connect. Catch negative trends early and get recommendations to course-correct."
+      description:
+        "See how your sleep, activity, and habits connect. Catch negative trends early and get recommendations to course-correct.",
     },
     {
       id: "customizable-ui",
       title: "An App That Fits Your Style",
-      description: "Customize everything to match how you work. Make CoreSense feel like it was built just for you."
+      description:
+        "Customize everything to match how you work. Make CoreSense feel like it was built just for you.",
     },
     {
       id: "real-time-sync",
       title: "Your Data, Everywhere You Go",
-      description: "Access your insights on any device. Your data syncs securely so you're always up to date, wherever you are."
+      description:
+        "Access your insights on any device. Your data syncs securely so you're always up to date, wherever you are.",
     },
     {
       id: "proactive-nudges",
       title: "Gentle Reminders That Actually Help",
-      description: "Get timely suggestions throughout your day — not annoying notifications. Smart nudges that support your goals without overwhelming you."
-    }
+      description:
+        "Get timely suggestions throughout your day — not annoying notifications. Smart nudges that support your goals without overwhelming you.",
+    },
   ];
 
   const handleEarlyAccessClick = (e) => {
@@ -102,63 +142,62 @@ export default function App() {
       alert("Please select a feature you're most interested in.");
       return;
     }
-    
+
     const ageNum = parseInt(age, 10);
     if (!age || isNaN(ageNum) || ageNum < 13 || ageNum > 100) {
       alert("Please enter your age (must be between 13 and 100).");
       return;
     }
-    
+
     if (!usageLikelihood || usageLikelihood < 1 || usageLikelihood > 10) {
       alert("Please rate how likely you are to use this app (1-10).");
       return;
     }
-    
+
     if (!usageFrequency) {
       alert("Please select how often you would use CoreSense.");
       return;
     }
 
-    // Submit to Formspree with all data
     const form = document.createElement("form");
     form.method = "POST";
     form.action = "https://formspree.io/f/manrpqwb";
-    
+
     const nameInput = document.createElement("input");
     nameInput.type = "hidden";
     nameInput.name = "name";
     nameInput.value = formData.name;
-    
+
     const emailInput = document.createElement("input");
     emailInput.type = "hidden";
     emailInput.name = "email";
     emailInput.value = formData.email;
-    
+
     const featureInput = document.createElement("input");
     featureInput.type = "hidden";
     featureInput.name = "selected_feature";
     featureInput.value = selectedFeature;
-    
+
     const usageLikelihoodInput = document.createElement("input");
     usageLikelihoodInput.type = "hidden";
     usageLikelihoodInput.name = "usage_likelihood";
     usageLikelihoodInput.value = usageLikelihood;
-    
+
     const usageFrequencyInput = document.createElement("input");
     usageFrequencyInput.type = "hidden";
     usageFrequencyInput.name = "usage_frequency";
     usageFrequencyInput.value = usageFrequency;
-    
+
     const ageInput = document.createElement("input");
     ageInput.type = "hidden";
     ageInput.name = "age";
     ageInput.value = age;
-    
+
     const sourceInput = document.createElement("input");
     sourceInput.type = "hidden";
     sourceInput.name = "source";
     sourceInput.value = "landing_waitlist_survey";
-    
+
     form.appendChild(nameInput);
     form.appendChild(emailInput);
     form.appendChild(featureInput);
@@ -168,12 +207,12 @@ export default function App() {
     form.appendChild(sourceInput);
     document.body.appendChild(form);
     form.submit();
-    
+
     setFormSubmitted(true);
   };
 
   if (formSubmitted) {
-  return (
+    return (
       <div className="app">
         <div className="success-container">
           <div className="success-icon">✓</div>
@@ -191,9 +230,16 @@ export default function App() {
       {showSurvey ? (
         <div className="survey-overlay" onClick={() => setShowSurvey(false)}>
           <div className="survey-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="close-button" onClick={() => setShowSurvey(false)}>×</button>
+            <button
+              className="close-button"
+              onClick={() => setShowSurvey(false)}
+            >
+              ×
+            </button>
             <h2>Which feature interests you most?</h2>
-            <p className="survey-subtitle">Select the feature you're most excited about</p>
+            <p className="survey-subtitle">
+              Select the feature you're most excited about
+            </p>
             <form onSubmit={handleSurveySubmit} className="survey-form">
               <div className="feature-grid">
                 {features.map((feature) => (
@@ -215,7 +261,7 @@ export default function App() {
                   </label>
                 ))}
               </div>
-              
+
               <div className="survey-questions">
                 <div className="survey-question">
                   <label htmlFor="age" className="survey-question-label">
@@ -230,8 +276,10 @@ export default function App() {
                     value={age}
                     onChange={(e) => {
                       const value = e.target.value;
-                      // Only allow non-negative numbers
-                      if (value === "" || (!isNaN(value) && parseFloat(value) >= 0)) {
+                      if (
+                        value === "" ||
+                        (!isNaN(value) && parseFloat(value) >= 0)
+                      ) {
                         setAge(value);
                       }
                     }}
@@ -240,10 +288,14 @@ export default function App() {
                     placeholder="Enter your age"
                   />
                 </div>
-                
+
                 <div className="survey-question">
-                  <label htmlFor="usage-likelihood" className="survey-question-label">
-                    On a scale of 1–10, how likely are you to use this app? (Be honest) <span className="required">*</span>
+                  <label
+                    htmlFor="usage-likelihood"
+                    className="survey-question-label"
+                  >
+                    On a scale of 1–10, how likely are you to use this app? (Be
+                    honest) <span className="required">*</span>
                   </label>
                   <div className="likelihood-input-container">
                     <input
@@ -258,7 +310,9 @@ export default function App() {
                       required
                     />
                     <div className="likelihood-value-display">
-                      <span className="likelihood-value">{usageLikelihood || "?"}</span>
+                      <span className="likelihood-value">
+                        {usageLikelihood || "?"}
+                      </span>
                       <span className="likelihood-scale">/ 10</span>
                     </div>
                   </div>
@@ -267,10 +321,14 @@ export default function App() {
                     <span>10 - Very Likely</span>
                   </div>
                 </div>
-                
+
                 <div className="survey-question">
-                  <label htmlFor="usage-frequency" className="survey-question-label">
-                    How often do you think you would use CoreSense? <span className="required">*</span>
+                  <label
+                    htmlFor="usage-frequency"
+                    className="survey-question-label"
+                  >
+                    How often do you think you would use CoreSense?{" "}
+                    <span className="required">*</span>
                   </label>
                   <select
                     id="usage-frequency"
@@ -282,14 +340,16 @@ export default function App() {
                   >
                     <option value="">Select an option...</option>
                     <option value="Daily">Daily</option>
-                    <option value="A few times a week">A few times a week</option>
+                    <option value="A few times a week">
+                      A few times a week
+                    </option>
                     <option value="Weekly">Weekly</option>
                     <option value="Rarely">Rarely</option>
                     <option value="Not sure yet">Not sure yet</option>
                   </select>
                 </div>
               </div>
-              
+
               <button type="submit" className="submit-survey-button">
                 Reserve My Spot
               </button>
@@ -297,12 +357,6 @@ export default function App() {
           </div>
         </div>
       ) : null}
-
-      <header className="header">
-        <div className="container">
-          <div className="logo">CoreSense</div>
-        </div>
-      </header>
 
       <div className="animated-background"></div>
       <main>
@@ -317,30 +371,59 @@ export default function App() {
                 <span className="gradient-text"> That Actually Work</span>
               </h1>
               <p className="hero-subheadline fade-in" id="hero-subheadline">
-                Your AI coach analyzes your real health data to deliver personalized recommendations that improve your wellbeing and performance. Not generic advice.
+                Your AI coach analyzes your real health data to deliver
+                personalized recommendations that improve your wellbeing and
+                performance. Not generic advice.
               </p>
               <div className="hero-benefits fade-in" id="hero-benefits">
                 <div className="benefit-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   <span>Track sleep, screen time & habits automatically</span>
                 </div>
                 <div className="benefit-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   <span>Get AI-powered insights tailored to you</span>
                 </div>
                 <div className="benefit-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   <span>AI texts you to keep you locked‑in.</span>
                 </div>
               </div>
               <div className="hero-waitlist fade-in" id="hero-waitlist">
-        <form
+                <form
                   onSubmit={handleEarlyAccessClick}
                   className="waitlist-form-inline"
                 >
@@ -350,7 +433,9 @@ export default function App() {
                       name="name"
                       placeholder="Your name (optional)"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       className="form-input-inline"
                     />
                     <input
@@ -359,7 +444,9 @@ export default function App() {
                       placeholder="Enter your email"
                       required
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       className="form-input-inline"
                     />
                     <button type="submit" className="cta-primary-inline">
@@ -369,20 +456,33 @@ export default function App() {
                   <p className="form-note-inline">
                     Free to join • Real Data • Register Interest
                   </p>
-        </form>
+                </form>
               </div>
             </div>
           </div>
-      </section>
+        </section>
 
         <section id="features" className="features">
           <div className="container">
-            <h2 className="section-title fade-in-up" id="features-title">How CoreSense Helps You</h2>
-            <p className="section-subtitle fade-in-up">Real benefits, not just features</p>
+            <h2 className="section-title fade-in-up" id="features-title">
+              How CoreSense Helps You
+            </h2>
+            <p className="section-subtitle fade-in-up">
+              Real benefits, not just features
+            </p>
             <div className="features-grid">
               <div className="feature-box fade-in-up" id="feature-0">
                 <div className="feature-icon">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M3 3v18h18"></path>
                     <path d="M18 7v10"></path>
                     <path d="M13 12v5"></path>
@@ -390,22 +490,48 @@ export default function App() {
                   </svg>
                 </div>
                 <h3>Real Data</h3>
-                <p>Connect Apple Health, Android Health, and supported wearables to surface honest trends from your actual activity.</p>
+                <p>
+                  Connect Apple Health, Android Health, and supported wearables
+                  to surface honest trends from your actual activity.
+                </p>
               </div>
               <div className="feature-box fade-in-up" id="feature-1">
                 <div className="feature-icon">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
                     <path d="M2 17l10 5 10-5"></path>
                     <path d="M2 12l10 5 10-5"></path>
                   </svg>
                 </div>
                 <h3>AI Coach</h3>
-                <p>Your AI coach lives as a saved contact — interact like a real person. Acts as an accountability partner, asking for proof when you commit to activities. Get proactive nudges and personalized coaching throughout your day.</p>
+                <p>
+                  Your AI coach lives as a saved contact — interact like a real
+                  person. Acts as an accountability partner, asking for proof
+                  when you commit to activities. Get proactive nudges and
+                  personalized coaching throughout your day.
+                </p>
               </div>
               <div className="feature-box fade-in-up" id="feature-2">
                 <div className="feature-icon">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
                     <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -414,58 +540,122 @@ export default function App() {
                   </svg>
                 </div>
                 <h3>Journalling</h3>
-                <p>Built-in journalling section allows the AI to truly personalize the insights and recommendations it gives you based on your thoughts, goals, and daily reflections.</p>
+                <p>
+                  Built-in journalling section allows the AI to truly
+                  personalize the insights and recommendations it gives you
+                  based on your thoughts, goals, and daily reflections.
+                </p>
               </div>
               <div className="feature-box fade-in-up" id="feature-3">
                 <div className="feature-icon">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                   </svg>
                 </div>
                 <h3>Weekly Summaries</h3>
-                <p>Get personalized weekly insights and trend analysis based on your sleep, steps, and habits.</p>
+                <p>
+                  Get personalized weekly insights and trend analysis based on
+                  your sleep, steps, and habits.
+                </p>
               </div>
               <div className="feature-box fade-in-up" id="feature-4">
                 <div className="feature-icon">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                   </svg>
                 </div>
                 <h3>Trend Analysis</h3>
-                <p>Track patterns and see how your health metrics change over time.</p>
+                <p>
+                  Track patterns and see how your health metrics change over
+                  time.
+                </p>
               </div>
               <div className="feature-box fade-in-up" id="feature-5">
                 <div className="feature-icon">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <circle cx="12" cy="12" r="3"></circle>
                     <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"></path>
                   </svg>
                 </div>
                 <h3>Fully Customizable</h3>
-                <p>Customize your UI settings to match your preferences and create the perfect experience for you.</p>
+                <p>
+                  Customize your UI settings to match your preferences and
+                  create the perfect experience for you.
+                </p>
               </div>
               <div className="feature-box fade-in-up" id="feature-6">
                 <div className="feature-icon">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                   </svg>
                 </div>
                 <h3>Real-time Sync</h3>
-                <p>Seamless syncing across all your devices with secure cloud accounts.</p>
+                <p>
+                  Seamless syncing across all your devices with secure cloud
+                  accounts.
+                </p>
               </div>
               <div className="feature-box fade-in-up" id="feature-7">
                 <div className="feature-icon">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
                 </div>
                 <h3>Privacy First</h3>
-                <p>Your data stays private with secure cloud accounts and opt-in syncing. We respect your privacy.</p>
+                <p>
+                  Your data stays private with secure cloud accounts and opt-in
+                  syncing. We respect your privacy.
+                </p>
               </div>
             </div>
           </div>
-      </section>
+        </section>
       </main>
 
       <footer className="footer">
@@ -474,5 +664,18 @@ export default function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsOfService />} />
+      </Routes>
+    </Router>
   );
 }
