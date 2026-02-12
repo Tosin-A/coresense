@@ -167,7 +167,7 @@ export default function TermsOfService() {
           <h2>15. Contact Us</h2>
           <p>
             If you have any questions about these Terms of Service, please
-            contact us at: legal@coresense.app
+            contact us at: <a href="mailto:coresenseai@gmail.com" style={{color: '#3b82f6'}}>coresenseai@gmail.com</a>
           </p>
         </section>
       </div>

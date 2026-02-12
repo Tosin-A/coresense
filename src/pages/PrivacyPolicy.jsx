@@ -101,7 +101,7 @@ export default function PrivacyPolicy() {
           <h2>7. Contact Us</h2>
           <p>
             If you have any questions about this privacy policy or our privacy
-            practices, please contact us at: privacy@coresense.app
+            practices, please contact us at <a href="mailto:coresenseai@gmail.com" style={{color: '#3b82f6'}}>coresenseai@gmail.com</a>
           </p>
         </section>
       </div>
