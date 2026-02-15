@@ -6,6 +6,7 @@ import {
   Link,
 } from "react-router-dom";
 import "./App.css";
+import TextType from "./components/TextType";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 
@@ -102,30 +103,6 @@ const Icons = {
     </svg>
   ),
 };
-
-// Rotating Text Component
-function RotatingText({ words, interval = 3000 }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % words.length);
-        setIsAnimating(false);
-      }, 300);
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, [words.length, interval]);
-
-  return (
-    <span className={`rotating-text ${isAnimating ? 'animating' : ''}`}>
-      {words[currentIndex]}
-    </span>
-  );
-}
 
 // Real Company Logos with actual brand colors
 const TrustedLogos = () => {
@@ -405,8 +382,8 @@ function HomePage() {
     };
   }, []);
 
-  const rotatingWords = ['understood', 'simplified', 'actionable', 'clear'];
-  const rotatingActions = ['sleep better', 'train smarter', 'recover faster', 'live healthier'];
+  const rotatingWords = ["understood", "simplified", "actionable", "clear"];
+  const rotatingActions = ["sleep better", "train smarter", "recover faster", "live healthier"];
 
   return (
     <div className="app">
@@ -432,11 +409,34 @@ function HomePage() {
               <h1 className="hero-title fade-in">
                 Your health data,
                 <br />
-                <span className="gradient-text">finally <RotatingText words={rotatingWords} interval={2500} />.</span>
+                <span className="gradient-text">
+                  finally{" "}
+                  <TextType
+                    as="span"
+                    className="hero-text-type"
+                    text={rotatingWords}
+                    typingSpeed={75}
+                    pauseDuration={1200}
+                    deletingSpeed={50}
+                    showCursor={false}
+                  />
+                  .
+                </span>
               </h1>
               <p className="hero-subtitle fade-in">
-                CoreSense connects to your wearables and health apps to help you{' '}
-                <RotatingText words={rotatingActions} interval={3000} />.
+                CoreSense connects to your wearables and health apps to help you{" "}
+                <TextType
+                  as="span"
+                  className="subtitle-text-type"
+                  text={rotatingActions}
+                  typingSpeed={70}
+                  pauseDuration={1500}
+                  deletingSpeed={45}
+                  showCursor
+                  cursorCharacter="_"
+                  variableSpeedEnabled={false}
+                />
+                .
                 No more guessing what the numbers mean.
               </p>
               <div className="hero-cta fade-in">
@@ -472,7 +472,17 @@ function HomePage() {
             <div className="section-header">
               <span className="section-tag">Features</span>
               <h2 className="section-title">
-                Everything you need to <RotatingText words={['understand', 'optimize', 'track', 'improve']} interval={2800} /> your body
+                Everything you need to{" "}
+                <TextType
+                  as="span"
+                  className="feature-text-type"
+                  text={["understand", "optimize", "track", "improve"]}
+                  typingSpeed={70}
+                  pauseDuration={1100}
+                  deletingSpeed={45}
+                  showCursor={false}
+                />{" "}
+                your body
               </h2>
               <p className="section-subtitle">
                 We take the complexity out of health data so you can focus on what matters.

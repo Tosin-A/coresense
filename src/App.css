@@ -661,16 +661,16 @@
 }
 
 /* ============================
-   ROTATING TEXT
+   TYPING TEXT
    ============================ */
-.rotating-text {
+.hero-text-type,
+.subtitle-text-type,
+.feature-text-type {
   display: inline-block;
-  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.rotating-text.animating {
-  opacity: 0;
-  transform: translateY(-10px);
+.subtitle-text-type .text-type__cursor {
+  color: var(--text-secondary);
 }
 
 /* ============================
