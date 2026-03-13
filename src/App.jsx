@@ -9,6 +9,7 @@ import "./App.css";
 import TextType from "./components/TextType";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import logo from "./assets/logo.png";
 
 // Icon Components
 const Icons = {
@@ -195,7 +196,8 @@ function Navbar() {
     <header className="header">
       <div className="container header-container">
         <Link to="/" className="logo">
-          CoreSense
+          <img src={logo} alt="CoreSense" className="logo-img" />
+          <span className="logo-text">CoreSense</span>
         </Link>
         <nav className="nav-links">
           <button onClick={() => scrollToSection('features')} className="nav-link">
@@ -440,7 +442,7 @@ function HomePage() {
               </p>
               <div className="hero-cta fade-in">
                 <a href="https://apps.apple.com/gb/app/coresense-ai/id6759058373" target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  <Icons.Apple />
+                  <img src={logo} alt="" className="btn-logo" />
                   <span>Download for iOS</span>
                 </a>
                 <button onClick={() => document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' })} className="btn-secondary">
@@ -672,7 +674,7 @@ function HomePage() {
         <div className="container">
           <div className="footer-content">
             <div className="footer-brand">
-              <span className="footer-logo">CoreSense</span>
+              <img src={logo} alt="CoreSense" className="footer-logo-img" />
               <span className="footer-tagline">Your day, finally understood.</span>
             </div>
             <div className="footer-links">
