@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ============================
@@ -972,72 +973,69 @@
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+
   .section {
-    padding: 80px 0;
+    padding: 64px 0;
+  }
+
+  .section-header {
+    margin-bottom: 40px;
   }
 
   .hero {
-    padding: 100px 0 60px;
+    padding: 80px 0 48px;
+  }
+
+  .hero-content {
+    max-width: 100%;
   }
 
   .hero-title {
-    font-size: 36px;
+    font-size: 34px;
+    margin-bottom: 20px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 32px;
+    max-width: 100%;
+  }
+
+  .hero-badge {
+    margin-bottom: 24px;
+    font-size: 13px;
   }
 
   .hero-cta {
     flex-direction: column;
     align-items: stretch;
+    gap: 10px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 16px 24px;
+    font-size: 16px;
+    width: 100%;
+    justify-content: center;
+    min-height: 52px;
   }
 
   .nav-links {
     display: none;
   }
 
-  .features-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .header {
+    padding: 12px 0;
   }
 
-  .steps-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .step-card {
-    padding: 32px 20px;
-  }
-
-  .step-number {
-    font-size: 48px;
-    top: 16px;
-    right: 16px;
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  .stat-card {
-    padding: 24px 12px;
-  }
-
-  .newsletter-card {
-    padding: 48px 24px;
-  }
-
-  .newsletter-inputs {
-    flex-direction: column;
-  }
-
-  .newsletter-btn {
-    width: 100%;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    gap: 24px;
-    align-items: flex-start;
+  .download-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+    min-height: 44px;
   }
 
   .integrations-section {
@@ -1047,31 +1045,155 @@
   .logo-track {
     gap: 40px;
   }
-}
 
-@media (max-width: 480px) {
-  .hero-title {
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .feature-card {
+    padding: 24px 20px;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .step-card {
+    padding: 28px 20px;
+    text-align: left;
+  }
+
+  .step-icon {
+    margin: 0 0 16px;
+  }
+
+  .step-number {
+    font-size: 48px;
+    top: 16px;
+    right: 16px;
+  }
+
+  .stats-section {
+    padding: 48px 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 20px 12px;
+  }
+
+  .stat-value {
     font-size: 32px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+  }
+
+  .about-content {
+    max-width: 100%;
+  }
+
+  .about-text p {
+    font-size: 16px;
+  }
+
+  .newsletter-section {
+    padding: 48px 0 80px;
+  }
+
+  .newsletter-card {
+    padding: 40px 20px;
+    border-radius: var(--radius-md);
+  }
+
+  .newsletter-title {
+    font-size: 26px;
+  }
+
+  .newsletter-subtitle {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .newsletter-inputs {
+    flex-direction: column;
+  }
+
+  .newsletter-input {
+    padding: 14px 16px;
+    font-size: 16px;
+    min-height: 48px;
+  }
+
+  .newsletter-btn {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 16px;
+    min-height: 52px;
+  }
+
+  .footer {
+    padding: 40px 0 20px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .footer-links {
+    gap: 16px;
+  }
+
+  .footer-link {
+    font-size: 15px;
+    padding: 4px 0;
   }
 
   .section-title {
     font-size: 28px;
   }
 
+  .section-subtitle {
+    font-size: 15px;
+  }
+
+  .legal-page {
+    padding: 80px 20px;
+  }
+
+  .legal-page h1 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .hero {
+    padding: 64px 0 40px;
+  }
+
+  .hero-title {
+    font-size: 30px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
   .hero-subtitle {
-    font-size: 16px;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    padding: 12px 20px;
-    font-size: 14px;
-    width: 100%;
-  }
-
-  .download-btn {
-    padding: 8px 14px;
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .download-btn span {
@@ -1079,14 +1201,40 @@
   }
 
   .feature-card {
-    padding: 24px 20px;
+    padding: 20px 16px;
   }
 
-  .stats-grid {
-    grid-template-columns: 1fr 1fr;
+  .feature-title {
+    font-size: 16px;
   }
 
-  .stat-value {
-    font-size: 32px;
+  .feature-description {
+    font-size: 14px;
+  }
+
+  .step-title {
+    font-size: 18px;
+  }
+
+  .step-description {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .newsletter-card {
+    padding: 32px 16px;
+  }
+
+  .legal-page h1 {
+    font-size: 26px;
+  }
+
+  .legal-page h2 {
+    font-size: 18px;
+  }
+
+  .legal-page p,
+  .legal-page li {
+    font-size: 15px;
   }
 }

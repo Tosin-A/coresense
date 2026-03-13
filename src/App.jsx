@@ -104,7 +104,6 @@ const Icons = {
   ),
 };
 
-// Real Company Logos with actual brand colors
 const TrustedLogos = () => {
   const companies = [
     {
@@ -209,7 +208,7 @@ function Navbar() {
             About
           </button>
         </nav>
-        <a href="#" className="download-btn">
+        <a href="https://apps.apple.com/gb/app/coresense-ai/id6759058373" target="_blank" rel="noopener noreferrer" className="download-btn">
           <Icons.Apple />
           <span>Download</span>
         </a>
@@ -383,7 +382,7 @@ function HomePage() {
   }, []);
 
   const rotatingWords = ["understood", "simplified", "actionable", "clear"];
-  const rotatingActions = ["sleep better", "train smarter", "recover faster", "live healthier"];
+  const rotatingActions = ["stay focused", "work smarter", "do more", "feel sharper"];
 
   return (
     <div className="app">
@@ -407,7 +406,7 @@ function HomePage() {
                 <span>50,000+ early adopters</span>
               </div>
               <h1 className="hero-title fade-in">
-                Your health data,
+                Your daily performance,
                 <br />
                 <span className="gradient-text">
                   finally{" "}
@@ -424,7 +423,7 @@ function HomePage() {
                 </span>
               </h1>
               <p className="hero-subtitle fade-in">
-                CoreSense connects to your wearables and health apps to help you{" "}
+                CoreSense is your AI-powered sidekick that helps you{" "}
                 <TextType
                   as="span"
                   className="subtitle-text-type"
@@ -437,10 +436,10 @@ function HomePage() {
                   variableSpeedEnabled={false}
                 />
                 .
-                No more guessing what the numbers mean.
+                No more guessing why some days just click and others don't.
               </p>
               <div className="hero-cta fade-in">
-                <a href="#" className="btn-primary">
+                <a href="https://apps.apple.com/gb/app/coresense-ai/id6759058373" target="_blank" rel="noopener noreferrer" className="btn-primary">
                   <Icons.Apple />
                   <span>Download for iOS</span>
                 </a>
@@ -456,7 +455,7 @@ function HomePage() {
         {/* Integrations Section */}
         <section className="integrations-section">
           <div className="container">
-            <p className="integrations-label">Connects with your favorite health platforms</p>
+            <p className="integrations-label">Trusted by users of top platforms</p>
           </div>
           <div className="logo-carousel">
             <div className="logo-track">
@@ -476,16 +475,16 @@ function HomePage() {
                 <TextType
                   as="span"
                   className="feature-text-type"
-                  text={["understand", "optimize", "track", "improve"]}
+                  text={["understand", "optimize", "track", "unlock"]}
                   typingSpeed={70}
                   pauseDuration={1100}
                   deletingSpeed={45}
                   showCursor={false}
                 />{" "}
-                your body
+                your day
               </h2>
               <p className="section-subtitle">
-                We take the complexity out of health data so you can focus on what matters.
+                A personal AI that actually gets you, and helps you perform at your best.
               </p>
             </div>
             <div className="features-grid">
@@ -495,7 +494,7 @@ function HomePage() {
                 </div>
                 <h3 className="feature-title">Smart Analytics</h3>
                 <p className="feature-description">
-                  Your sleep, activity, and vitals analyzed together to spot patterns you'd never notice on your own.
+                  Your habits, energy, and routines analyzed together to show you what drives your best days.
                 </p>
               </div>
               <div className="feature-card fade-in">
@@ -504,7 +503,7 @@ function HomePage() {
                 </div>
                 <h3 className="feature-title">Personal AI Coach</h3>
                 <p className="feature-description">
-                  Get advice that's actually relevant to you, based on your real data and goals.
+                  Get advice that's actually relevant to your routine, based on your real data and goals.
                 </p>
               </div>
               <div className="feature-card fade-in">
@@ -513,7 +512,7 @@ function HomePage() {
                 </div>
                 <h3 className="feature-title">Privacy First</h3>
                 <p className="feature-description">
-                  Your health data stays on your device. We can't see it, sell it, or share it.
+                  Your data stays on your device. We can't see it, sell it, or share it.
                 </p>
               </div>
               <div className="feature-card fade-in">
@@ -522,16 +521,16 @@ function HomePage() {
                 </div>
                 <h3 className="feature-title">Instant Insights</h3>
                 <p className="feature-description">
-                  No waiting around. Get meaningful feedback within seconds of syncing your data.
+                  No waiting around. Get meaningful feedback within seconds, whenever you need it.
                 </p>
               </div>
               <div className="feature-card fade-in">
                 <div className="feature-icon">
                   <Icons.Sync />
                 </div>
-                <h3 className="feature-title">Works Everywhere</h3>
+                <h3 className="feature-title">Learns Your Rhythm</h3>
                 <p className="feature-description">
-                  Apple Watch, Fitbit, Garmin, Oura, Whoop — if it tracks health, we probably support it.
+                  The more you use it, the better it gets. CoreSense adapts to your habits and routines over time.
                 </p>
               </div>
               <div className="feature-card fade-in">
@@ -540,7 +539,7 @@ function HomePage() {
                 </div>
                 <h3 className="feature-title">No Account Needed</h3>
                 <p className="feature-description">
-                  Download, connect your devices, and start. No email, no password, no friction.
+                  Download and start. No email, no password, no friction. Just open the app and go.
                 </p>
               </div>
             </div>
@@ -553,7 +552,7 @@ function HomePage() {
             <div className="section-header">
               <span className="section-tag">How it Works</span>
               <h2 className="section-title">
-                From raw data to real understanding
+                Stupidly simple to get started
               </h2>
               <p className="section-subtitle">
                 Three steps. That's all it takes.
@@ -563,21 +562,21 @@ function HomePage() {
               <div className="step-card fade-in">
                 <div className="step-number">01</div>
                 <div className="step-icon">
-                  <Icons.Upload />
+                  <Icons.Zap />
                 </div>
-                <h3 className="step-title">Connect</h3>
+                <h3 className="step-title">Open</h3>
                 <p className="step-description">
-                  Link your Apple Health, wearable, or fitness app. Takes about 30 seconds.
+                  Download CoreSense and jump straight in. No setup, no accounts. Takes about 10 seconds.
                 </p>
               </div>
               <div className="step-card fade-in">
                 <div className="step-number">02</div>
                 <div className="step-icon">
-                  <Icons.Cpu />
+                  <Icons.Brain />
                 </div>
-                <h3 className="step-title">Analyze</h3>
+                <h3 className="step-title">Ask</h3>
                 <p className="step-description">
-                  Our AI looks at your sleep, activity, heart rate, and more to find what's important.
+                  Tell CoreSense what you're working on, how you're feeling, or what you need help with.
                 </p>
               </div>
               <div className="step-card fade-in">
@@ -585,9 +584,9 @@ function HomePage() {
                 <div className="step-icon">
                   <Icons.Send />
                 </div>
-                <h3 className="step-title">Understand</h3>
+                <h3 className="step-title">Act</h3>
                 <p className="step-description">
-                  Get clear recommendations and insights in plain English. No medical jargon.
+                  Get clear, personalized advice you can act on right away. No fluff, just what to do next.
                 </p>
               </div>
             </div>
@@ -608,7 +607,7 @@ function HomePage() {
                 <div className="stat-value">
                   <AnimatedCounter target={12} suffix="M+" />
                 </div>
-                <div className="stat-label">Health Data Points Analyzed</div>
+                <div className="stat-label">Data Points Analyzed</div>
               </div>
               <div className="stat-card fade-in">
                 <div className="stat-value">
@@ -618,9 +617,9 @@ function HomePage() {
               </div>
               <div className="stat-card fade-in">
                 <div className="stat-value">
-                  <AnimatedCounter target={15} suffix="+" />
+                  <AnimatedCounter target={10} suffix="s" />
                 </div>
-                <div className="stat-label">Integrations</div>
+                <div className="stat-label">To Get Started</div>
               </div>
             </div>
           </div>
@@ -632,20 +631,20 @@ function HomePage() {
             <div className="about-content">
               <div className="about-text fade-in">
                 <span className="section-tag">About</span>
-                <h2 className="section-title">Built by people who got tired of spreadsheets</h2>
+                <h2 className="section-title">Built by people who wanted to do more with their day</h2>
                 <p>
-                  We were the type of people who tracked everything — sleep scores, resting heart rate,
-                  steps, calories. But when we looked at all those numbers, we had no idea what they
-                  actually meant for our health.
+                  We were the type of people who tried every productivity hack out there. Pomodoro timers,
+                  habit trackers, journaling apps. But none of them felt personal. They gave us systems,
+                  not understanding.
                 </p>
                 <p>
-                  So we built CoreSense. An app that takes all your health data and turns it into
-                  insights you can actually use. No more googling "is 62 resting heart rate good?"
-                  at 2am.
+                  So we built CoreSense. An AI that actually listens, learns how you work, and gives you
+                  advice that fits your life. Not generic tips from a blog post, but real suggestions
+                  based on who you are and how your day is going.
                 </p>
                 <p>
-                  We're a small team, and we're obsessed with making health data
-                  accessible to everyone — not just biohackers and athletes.
+                  We're a small team, and we're obsessed with helping everyday people
+                  get more out of their day, not just biohackers and athletes.
                 </p>
               </div>
             </div>
@@ -658,7 +657,7 @@ function HomePage() {
             <div className="newsletter-card">
               <h2 className="newsletter-title">Stay in the loop</h2>
               <p className="newsletter-subtitle">
-                Get updates on new features, health tips, and early access to what we're building next.
+                Get updates on new features, productivity tips, and early access to what we're building next.
               </p>
               <NewsletterForm />
               <p className="newsletter-disclaimer">
@@ -674,7 +673,7 @@ function HomePage() {
           <div className="footer-content">
             <div className="footer-brand">
               <span className="footer-logo">CoreSense</span>
-              <span className="footer-tagline">Health data, finally understood.</span>
+              <span className="footer-tagline">Your day, finally understood.</span>
             </div>
             <div className="footer-links">
               <Link to="/privacy" className="footer-link">Privacy Policy</Link>
